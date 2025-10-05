@@ -1,3 +1,133 @@
+/* Define a modern color palette and consistent properties */
+:root {
+  --background-darker: #0b1220;
+  --background-dark: #0f1724;
+  --background-panel: #152338;
+  --text-primary: #e6eef6;
+  --text-secondary: #9aa6b2;
+  --accent-primary: #46b3ff;
+  --accent-secondary: #2bd0a6;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --interactive-glow: rgba(70, 179, 255, 0.3);
+}
+
+/* Add a smooth font and box-sizing reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- LAYOUT PANELS --- */
+.panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- NEW: Layout Proportions --- */
+#left-panel, #right-panel {
+  flex: 1; /* Side panels take 1 part of the space */
+  min-width: 350px; /* Prevent them from getting too squished */
+  max-width: 400px;
+  background-color: var(--background-darker);
+}
+#left-panel { border-right: 1px solid var(--border-color); }
+#right-panel { border-left: 1px solid var(--border-color); }
+
+#center-panel {
+  flex: 2.5; /* Center panel takes 2.5 parts, making it much larger */
+  background: radial-gradient(circle at center, var(--background-panel), var(--background-dark));
+}
+
+/* --- NEW: Wrapper for consistent content alignment --- */
+.content-wrapper {
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --- NEW: Map now fits its container perfectly --- */
+#map {
+  width: 100%;
+  height: 85%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+
+/* --- UI ELEMENTS --- */
+h2 {
+  color: var(--accent-primary);
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+label {
+  display: block;
+  margin-top: 15px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+input[type="date"], input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+select option { background: var(--background-darker); }
+input[type="date"]:hover, input[type="text"]:hover, select:hover { border-color: var(--border-color); }
+input[type="date"]:focus, input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--interactive-glow);
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  color: #0b1220;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.1);
+}
+
 /* --- RESULTS LIST & SCROLLBAR HIDING --- */
 #results-list {
   list-style: none;
